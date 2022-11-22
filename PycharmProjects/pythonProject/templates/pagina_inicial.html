@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/paginai.css') }}"
+    <title>Olá mundo!</title>
+</head>
+<body>
+<div style="text-align:center">
+
+<h1>Olá mundo!</h1>
+
+<h2>(loading)</h2>
+
+<p>Em teste... </p>
+
+    <!--
+    <img src="../static/img/bobbrasileiro.jpg">
+    <img src="../static/img/jorjabrasileira.jpg">
+    -->
+    {% autoescape false %}
+    {{ meu_paragrafo }} <!-- nome nao importa -->
+    {% endautoescape %}
+
+<img src="{{ url_for('static', filename='img/bobbr.jpg') }}">  <!-- duas chaves para renderizar o servidor -->
+
+</div>
+</body>
+</html>
