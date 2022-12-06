@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Albuns da Taylor Swift</title>
+
+</head>
+<body>
+<h1>Albuns da Taylor Swift</h1>
+
+<form onsubmit="return false">
+    <label for="seletor_album">Album:</label>
+    <select id="seletor_album">
+        <option value="speak_now">Speak Now</option>
+        <option value="fearless">fearless</option>
+        <option value="red">red</option>
+        <option value="midnights">midnights</option>
+        <option value="folklore">folklore</option>
+    </select>
+    <button id="enviar_album"> Enviar </button>
+</form>
+
+</body>
+<script
+   src="https://code.jquery.com/jquery-3.3.1.min.js"
+   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+   crossorigin="anonymous">
+</script>
+<script type="application/javascript">
+    $("#enviar_album").on("click", function(event) {
+    event.preventDefault(); // o usuário precisa selecionar um valor diferente do default, senão não envia a requisição
+
+    $.ajax({
+        method: "POST",
+        url: "{{ url_for('musicas_album') }}", // deve ser o mesmo nome do método definido no servidor
+        //envia uma variável de nome opcao_selecionada para os servidor
+        //essa variável tem o mesmo valor do elemento HTML select_tables (definido ali em cima no código)
+        data: {selecionado: $("#seletor_album").val()},
+        success: function(responseData) {
+            window.alert('as musicas do album selecionado são: ' + responseData['musicas']);
+        }
+    });
+});
+</script>
+</html>
